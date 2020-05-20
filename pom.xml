@@ -21,7 +21,6 @@
         
         <!-- Version des dépendances -->
         <version.java>11</version.java>
-        <version.javaee>8.0</version.javaee>
         
         <!-- Version de Keycloak -->
         <version.keycloak>9.0.3</version.keycloak>
@@ -40,7 +39,31 @@
     
     <dependencyManagement>
         <dependencies>
-            
+            <dependency>
+                <groupId>org.keycloak</groupId>
+                <artifactId>keycloak-core</artifactId>
+                <version>${version.keycloak}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.keycloak</groupId>
+                <artifactId>keycloak-common</artifactId>
+                <version>${version.keycloak}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.keycloak</groupId>
+                <artifactId>keycloak-services</artifactId>
+                <version>${version.keycloak}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.keycloak</groupId>
+                <artifactId>keycloak-server-spi</artifactId>
+                <version>${version.keycloak}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.keycloak</groupId>
+                <artifactId>keycloak-server-spi-private</artifactId>
+                <version>${version.keycloak}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     
