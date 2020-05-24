@@ -23,7 +23,7 @@
         <version.java>11</version.java>
         
         <!-- Version de Keycloak -->
-        <version.keycloak>9.0.3</version.keycloak>
+        <version.keycloak>10.0.1</version.keycloak>
         
         <!-- Version des extensions -->
         <version.maven-jar-plugin>3.2.0</version.maven-jar-plugin>        
