@@ -1,7 +1,56 @@
+<!-- 
+    FranceConnect Particulier 
+-->
+
+<!-- EIDAS Level -->
 <div class="form-group">
-    <label class="col-md-2 control-label" for="eidasOverride">{{:: 'eidasOverride' | translate}}</label>
+    <label class="col-md-2 control-label" for="eidasLevel">{{:: 'franceconnect.eidasLevel' | translate}}</label>
+    <div class="col-md-6">
+        <div>
+            <select class="form-control" id="eidasLevel"
+                    ng-model="identityProvider.config.eidasLevel">
+                <option value="LEVEL_1">{{:: 'franceconnect.eidasLevel.level1' | translate}}</option>
+                <option value="LEVEL_2">{{:: 'franceconnect.eidasLevel.level2' | translate}}</option>
+                <option value="LEVEL_3">{{:: 'franceconnect.eidasLevel.level3' | translate}}</option>
+            </select>
+        </div>
+    </div>
+    <kc-tooltip>{{:: 'franceconnect.eidasLevel.tooltip' | translate}}</kc-tooltip>
+</div>
+
+<!-- EIDAS Override -->
+<div class="form-group">
+    <label class="col-md-2 control-label" for="eidasOverride">{{:: 'franceconnect.eidasOverride' | translate}}</label>
     <div class="col-md-6">
         <input ng-model="identityProvider.config.eidasOverride" id="eidasOverride" onoffswitchvalue on-text="{{:: 'onText' | translate}}" off-text="{{:: 'offText' | translate}}" />
     </div>
-    <kc-tooltip>{{:: 'identity-provider.eidasOverride.tooltip' | translate}}</kc-tooltip>
+    <kc-tooltip>{{:: 'franceconnect.eidasOverride.tooltip' | translate}}</kc-tooltip>
+</div>
+
+<!-- Environment -->
+<div class="form-group">
+    <label class="col-md-2 control-label" for="eidasLevel">{{:: 'franceconnect.environment' | translate}}</label>
+    <div class="col-md-6">
+        <div>
+            <select class="form-control" id="environment"
+                    ng-model="identityProvider.config.environment">
+                <option value="INTEGRATION">{{:: 'franceconnect.environment.integration' | translate}}</option>
+                <option value="PRODUCTION">{{:: 'franceconnect.environment.production' | translate}}</option>
+            </select>
+        </div>
+    </div>
+    <kc-tooltip>{{:: 'franceconnect.environment.tooltip' | translate}}</kc-tooltip>
+</div>
+
+<!-- 
+    OIDC Configuration 
+-->
+
+<!-- Validate Signature -->
+<div class="form-group">
+    <label class="col-md-2 control-label" for="validateSignature">{{:: 'validate-signatures' | translate}}</label>
+    <div class="col-md-6">
+        <input ng-model="identityProvider.config.validateSignature" id="validateSignature" onoffswitchvalue on-text="{{:: 'onText' | translate}}" off-text="{{:: 'offText' | translate}}" />
+    </div>
+    <kc-tooltip>{{:: 'identity-provider.validate-signatures.tooltip' | translate}}</kc-tooltip>
 </div>

@@ -15,7 +15,7 @@ public final class FranceConnectIdentityProviderConfig extends OIDCIdentityProvi
 
     public static final String CONFIG_EIDAS_OVERRIDE = "eidasOverride";
 
-    public static final String CONFIG_ENVIRONMENT = "franceconnectEnvironment";
+    public static final String CONFIG_ENVIRONMENT = "environment";
 
     public FranceConnectIdentityProviderConfig() {
         this(null);

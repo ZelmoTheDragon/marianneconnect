@@ -7,7 +7,7 @@ import org.keycloak.broker.oidc.mappers.UsernameTemplateMapper;
  *
  * @author MOSELLE Maxime
  */
-public class FranceConnectUsernameTemplateMapper extends UsernameTemplateMapper {
+public final class FranceConnectUsernameTemplateMapper extends UsernameTemplateMapper {
 
     public static final String ID = "franceconnect-particulier-username-template-mapper";
 

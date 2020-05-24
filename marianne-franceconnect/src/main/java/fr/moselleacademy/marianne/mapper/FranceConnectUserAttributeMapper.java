@@ -7,7 +7,7 @@ import org.keycloak.broker.oidc.mappers.UserAttributeMapper;
  *
  * @author MOSELLE Maxime
  */
-public class FranceConnectUserAttributeMapper extends UserAttributeMapper {
+public final class FranceConnectUserAttributeMapper extends UserAttributeMapper {
 
     public static final String ID = "franceconnect-particulier-user-attribute-mapper";
 
