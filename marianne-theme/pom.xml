@@ -10,6 +10,7 @@
         <groupId>fr.moselleacademy</groupId>
         <artifactId>keycloak-marianne</artifactId>
         <version>0.0.1</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     
     <groupId>fr.moselleacademy.keycloak.marianne</groupId>
@@ -19,5 +20,36 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    
+    <dependencies>
+        
+    </dependencies>
+    
+    <build>
+        <plugins>
+            
+            <!-- 
+                Extension Wildfly
+                mvn wildly:deploy
+            -->
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <configuration>
+                    <skip>false</skip>
+                </configuration>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${version.java}</source>
+                    <target>${version.java}</target>
+                    <release>${version.java}</release>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     
 </project>
