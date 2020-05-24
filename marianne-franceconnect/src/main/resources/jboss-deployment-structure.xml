@@ -2,7 +2,7 @@
 <!-- JBoss module descriptor -->
 <jboss-deployment-structure>
     <deployment>
-        <dependencies>
+        <dependencies>        
             <module name="org.keycloak.keycloak-core"/>
             <module name="org.keycloak.keycloak-common"/>
             <module name="org.keycloak.keycloak-services"/>
