@@ -1,4 +1,4 @@
-package fr.moselleacademy.keycloak.marianne.social.franceconnect;
+package fr.moselleacademy.marianne.social;
 
 import org.keycloak.broker.provider.AbstractIdentityProviderFactory;
 import org.keycloak.broker.social.SocialIdentityProviderFactory;
@@ -31,8 +31,8 @@ public final class FranceConnectIdentityProviderFactory extends AbstractIdentity
     }
 
     @Override
-    public <C extends IdentityProviderModel> C createConfig() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public FranceConnectIdentityProviderConfig createConfig() {
+        return new FranceConnectIdentityProviderConfig();
     }
 
     @Override

@@ -1,4 +1,4 @@
-package fr.moselleacademy.keycloak.marianne.social.franceconnect;
+package fr.moselleacademy.marianne.social;
 
 import java.util.Objects;
 import javax.ws.rs.GET;
@@ -29,9 +29,11 @@ import org.keycloak.services.messages.Messages;
 public final class FranceConnectIdentityProvider extends OIDCIdentityProvider
         implements SocialIdentityProvider<OIDCIdentityProviderConfig> {
 
+    public static final String DEFAULT_SCOPE = "openid identite_pivot email";
+
     public FranceConnectIdentityProvider(
             final KeycloakSession session,
-            final OIDCIdentityProviderConfig config) {
+            final FranceConnectIdentityProviderConfig config) {
 
         super(session, config);
     }
@@ -82,6 +84,11 @@ public final class FranceConnectIdentityProvider extends OIDCIdentityProvider
             valid = true;
         }
         return valid;
+    }
+
+    @Override
+    protected String getDefaultScopes() {
+        return DEFAULT_SCOPE;
     }
 
     protected class FranceConnectEndPoint extends OIDCEndpoint {

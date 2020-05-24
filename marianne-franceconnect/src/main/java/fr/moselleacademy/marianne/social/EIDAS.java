@@ -1,6 +1,5 @@
-package fr.moselleacademy.keycloak.marianne.social.franceconnect;
+package fr.moselleacademy.marianne.social;
 
-import com.google.common.base.Objects;
 import java.util.List;
 
 /**
@@ -11,8 +10,7 @@ public enum EIDAS {
 
     LEVEL_1("eidas1"),
     LEVEL_2("eidas2"),
-    LEVEL_3("eidas3"),
-    EMPTY("null");
+    LEVEL_3("eidas3");
 
     public static final String QUERY_PARAM_ACR = "acr_values";
 
@@ -24,16 +22,6 @@ public enum EIDAS {
 
     public String getValue() {
         return value;
-    }
-
-    public static EIDAS fromString(final String value) {
-        EIDAS eidas = EMPTY;
-        for (EIDAS e : values()) {
-            if (Objects.equal(e.value, value)) {
-                eidas = e;
-            }
-        }
-        return eidas;
     }
 
     public static List<String> asList() {

@@ -1,4 +1,4 @@
-package fr.moselleacademy.keycloak.marianne.social.franceconnect;
+package fr.moselleacademy.marianne.social;
 
 import org.keycloak.broker.oidc.OIDCIdentityProviderConfig;
 import org.keycloak.models.IdentityProviderModel;
@@ -15,7 +15,13 @@ public final class FranceConnectIdentityProviderConfig extends OIDCIdentityProvi
 
     public static final String CONFIG_EIDAS_OVERRIDE = "eidasOverride";
 
-    public FranceConnectIdentityProviderConfig(IdentityProviderModel model) {
+    public static final String CONFIG_ENVIRONMENT = "franceconnectEnvironment";
+
+    public FranceConnectIdentityProviderConfig() {
+        this(null);
+    }
+
+    public FranceConnectIdentityProviderConfig(final IdentityProviderModel model) {
         super(model);
 
         if (!getConfig().containsKey(CONFIG_EIDAS_LEVEL)) {
@@ -24,14 +30,23 @@ public final class FranceConnectIdentityProviderConfig extends OIDCIdentityProvi
         if (!getConfig().containsKey(CONFIG_EIDAS_OVERRIDE)) {
             setEidasOverride(true);
         }
+        if (!getConfig().containsKey(CONFIG_ENVIRONMENT)) {
+            setEnvironment(Environment.INTEGRATION);
+        }
+        
+        var env = getEnvironment();
+        setAuthorizationUrl(env.getAutorizationURL());
+        setTokenUrl(env.getTokenURL());
+        setUserInfoUrl(env.getUserInfoURL());
+        setLogoutUrl(env.getUserInfoURL());
     }
 
     public EIDAS getEidasLevel() {
-        return EIDAS.fromString(getConfig().get(CONFIG_EIDAS_LEVEL));
+        return EIDAS.valueOf(getConfig().get(CONFIG_EIDAS_LEVEL));
     }
 
     public void setEidasLevel(final EIDAS eidasLevel) {
-        getConfig().put(CONFIG_EIDAS_LEVEL, eidasLevel.getValue());
+        getConfig().put(CONFIG_EIDAS_LEVEL, eidasLevel.name());
     }
 
     public boolean isEidasOverride() {
@@ -40,6 +55,14 @@ public final class FranceConnectIdentityProviderConfig extends OIDCIdentityProvi
 
     public void setEidasOverride(final boolean eidasOverride) {
         getConfig().put(CONFIG_EIDAS_OVERRIDE, Boolean.toString(eidasOverride));
+    }
+
+    public Environment getEnvironment() {
+        return Environment.valueOf(getConfig().get(CONFIG_ENVIRONMENT));
+    }
+
+    public void setEnvironment(final Environment environment) {
+        getConfig().put(CONFIG_ENVIRONMENT, environment.name());
     }
 
 }

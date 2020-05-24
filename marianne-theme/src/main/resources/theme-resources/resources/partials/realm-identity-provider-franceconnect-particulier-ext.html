@@ -1,0 +1,7 @@
+<div class="form-group">
+    <label class="col-md-2 control-label" for="eidasOverride">{{:: 'eidasOverride' | translate}}</label>
+    <div class="col-md-6">
+        <input ng-model="identityProvider.config.eidasOverride" id="eidasOverride" onoffswitchvalue on-text="{{:: 'onText' | translate}}" off-text="{{:: 'offText' | translate}}" />
+    </div>
+    <kc-tooltip>{{:: 'identity-provider.eidasOverride.tooltip' | translate}}</kc-tooltip>
+</div>

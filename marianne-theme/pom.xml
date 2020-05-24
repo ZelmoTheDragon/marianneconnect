@@ -13,7 +13,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     
-    <groupId>fr.moselleacademy.keycloak.marianne</groupId>
+    <groupId>fr.moselleacademy.marianne</groupId>
     <artifactId>marianne-theme</artifactId>
     <packaging>jar</packaging>
     
