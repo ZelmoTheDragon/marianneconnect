@@ -1,0 +1,17 @@
+
+a.zocial.franceconnect-particulier {
+    background-image: url("../img/FCboutons-12.png");
+    background-repeat: no-repeat;
+    background-size:cover;
+    width: 224px;
+    height: 56px;
+}
+
+a.zocial.franceconnect-particulier:hover {
+    background-image: url("../img/FCboutons-13.png") !important;
+}
+
+a.zocial.franceconnect-particulier span {
+    display:none;
+}
+
