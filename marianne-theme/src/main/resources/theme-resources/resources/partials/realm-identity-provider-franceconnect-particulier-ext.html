@@ -7,8 +7,11 @@
     <label class="col-md-2 control-label" for="eidasLevel">{{:: 'franceconnect.eidasLevel' | translate}}</label>
     <div class="col-md-6">
         <div>
-            <select class="form-control" id="eidasLevel"
-                    ng-model="identityProvider.config.eidasLevel">
+            <select 
+                id="eidasLevel"
+                class="form-control" 
+                ng-model="identityProvider.config.eidasLevel">
+
                 <option value="LEVEL_1">{{:: 'franceconnect.eidasLevel.level1' | translate}}</option>
                 <option value="LEVEL_2">{{:: 'franceconnect.eidasLevel.level2' | translate}}</option>
                 <option value="LEVEL_3">{{:: 'franceconnect.eidasLevel.level3' | translate}}</option>
@@ -32,8 +35,11 @@
     <label class="col-md-2 control-label" for="eidasLevel">{{:: 'franceconnect.environment' | translate}}</label>
     <div class="col-md-6">
         <div>
-            <select class="form-control" id="environment"
-                    ng-model="identityProvider.config.environment">
+            <select 
+                id="environment"
+                class="form-control" 
+                ng-model="identityProvider.config.environment">
+                
                 <option value="INTEGRATION">{{:: 'franceconnect.environment.integration' | translate}}</option>
                 <option value="PRODUCTION">{{:: 'franceconnect.environment.production' | translate}}</option>
             </select>

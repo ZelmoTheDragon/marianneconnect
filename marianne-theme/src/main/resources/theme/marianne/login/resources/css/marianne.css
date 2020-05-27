@@ -15,3 +15,16 @@ a.zocial.franceconnect-particulier span {
     display:none;
 }
 
+#kc-header-wrapper {
+    background-image: url(../img/logo-marianne.png);
+    background-repeat: no-repeat;
+    background-position: 40px 10px;
+}
+
+@media (max-width: 767px) {
+
+    #kc-header-wrapper {
+        background: none;
+    }
+}
+
