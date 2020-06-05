@@ -27,6 +27,16 @@ public class SessionRepository {
     private static final Logger LOGGER = Logger.getLogger(SessionRepository.class.getName());
 
     /**
+     * Interval de temps (en secondes) entre chaque vérification des jetons.
+     */
+    private static final int TIMER_PERIOD = 60;
+
+    /**
+     * Durée de vie d'un jeton (en minutes).
+     */
+    private static final int TOKEN_EXPIRATION_TIME = 30;
+
+    /**
      * Sessions connectées.
      */
     private final Set<Token> session;
@@ -47,7 +57,12 @@ public class SessionRepository {
     @PostConstruct
     protected void init() {
         timer = Executors.newScheduledThreadPool(1);
-        timer.scheduleAtFixedRate(this::revokeTokenIfExpired, 0, 60, TimeUnit.SECONDS);
+        timer.scheduleAtFixedRate(
+                this::revokeTokenIfExpired, 
+                0, 
+                TIMER_PERIOD, 
+                TimeUnit.SECONDS
+        );
     }
 
     /**
@@ -81,7 +96,7 @@ public class SessionRepository {
                 .filter(e -> Objects.equals(refreshToken, e.getRefreshToken().toString()))
                 .findFirst();
     }
-    
+
     /**
      * Rechercher un jeton existant.
      *
@@ -117,7 +132,7 @@ public class SessionRepository {
     private static boolean isExpired(final LocalDateTime date) {
         return LocalDateTime
                 .now()
-                .isAfter(date.plus(30, ChronoUnit.MINUTES));
+                .isAfter(date.plus(TOKEN_EXPIRATION_TIME, ChronoUnit.MINUTES));
     }
 
 }
