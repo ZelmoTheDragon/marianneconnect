@@ -1,7 +1,6 @@
 package fr.moselleacademy.marianne.dataprovider.security;
 
 import java.util.Objects;
-import java.util.ResourceBundle;
 import javax.inject.Inject;
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -23,11 +22,6 @@ import javax.ws.rs.core.Response;
 public class SecurityEndPoint {
 
     /**
-     * Code d'authorisation applicatif.
-     */
-    private final String authorizationCode;
-
-    /**
      * Entrepôt de données.
      */
     @Inject
@@ -44,9 +38,7 @@ public class SecurityEndPoint {
      * de Java EE.
      */
     public SecurityEndPoint() {
-        authorizationCode = ResourceBundle
-                .getBundle("application")
-                .getString("app.code");
+        // RAS
     }
 
     /**
@@ -72,7 +64,10 @@ public class SecurityEndPoint {
             @FormParam("refresh_token") final String refreshToken) {
 
         final Response response;
-        if (!Objects.equals(authorizationCode, authorization)) {
+        Authorization clientAuth = Authorization.parse(authorization);
+        Authorization serverAuth = Authorization.createServerAuth(Authorization.TYPE_BASIC);
+
+        if (!Objects.equals(serverAuth, clientAuth)) {
             response = createFailure("Invalid Authorization code");
         } else if (Objects.equals(GrantType.PASSWORD, grantType)) {
             response = repository

@@ -81,6 +81,19 @@ public class SessionRepository {
                 .filter(e -> Objects.equals(refreshToken, e.getRefreshToken().toString()))
                 .findFirst();
     }
+    
+    /**
+     * Rechercher un jeton existant.
+     *
+     * @param accessToken Jeton d'access
+     * @return Une option contenant ou non le jeton de session
+     */
+    public Optional<Token> findByAccessToken(final String accessToken) {
+        return session
+                .stream()
+                .filter(e -> Objects.equals(accessToken, e.getAccessToken().toString()))
+                .findFirst();
+    }
 
     /**
      * Révoquer les jetons expirés.

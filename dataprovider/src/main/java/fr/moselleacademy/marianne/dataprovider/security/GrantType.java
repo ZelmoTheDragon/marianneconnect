@@ -1,6 +1,7 @@
 package fr.moselleacademy.marianne.dataprovider.security;
 
 /**
+ * Type d'accès.
  *
  * @author MOSELLE Maxime
  */
