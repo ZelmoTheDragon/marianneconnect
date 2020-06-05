@@ -1,7 +1,6 @@
 package fr.moselleacademy.marianne.dataprovider.discovery;
 
 import fr.moselleacademy.marianne.dataprovider.util.CSV;
-import java.util.logging.Logger;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.ws.rs.Consumes;
@@ -20,11 +19,6 @@ import javax.ws.rs.core.Response;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class DiscoveryEndPoint {
-
-    /**
-     * Journalisation.
-     */
-    private static final Logger LOGGER = Logger.getLogger(DiscoveryEndPoint.class.getName());
 
     /**
      * Emplacement du fichier de découverte.
@@ -68,7 +62,7 @@ public class DiscoveryEndPoint {
     public Response showEndPoint() {
 
         String json = CSV
-                .readRawFile(DISCOVERY_FILE)
+                .readFile(DISCOVERY_FILE)
                 .stream()
                 .reduce("", String::concat);
 

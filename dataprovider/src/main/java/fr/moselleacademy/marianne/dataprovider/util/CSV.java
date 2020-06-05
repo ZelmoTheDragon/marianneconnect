@@ -28,10 +28,14 @@ public final class CSV {
      */
     private static final String CSV_SEPARATOR = ",";
 
+    /**
+     * Constructeur interne.
+     */
     private CSV() {
+        throw new UnsupportedOperationException("No instance for you");
     }
 
-    public static List<String> readRawFile(final String path) {
+    public static List<String> readFile(final String path) {
         // Utilisation de BufferReader à la place de java.nio.Paths et java.nio.Files
         // Car non surporté lorsque cette application est déployée dans Keycloak.
         List<String> lines;
@@ -56,7 +60,7 @@ public final class CSV {
             final String header,
             final Function<String[], E> mapper) {
 
-        return readRawFile(path)
+        return readFile(path)
                 .stream()
                 .filter(e -> !e.contains(header))
                 .map(e -> e.split(CSV_SEPARATOR))

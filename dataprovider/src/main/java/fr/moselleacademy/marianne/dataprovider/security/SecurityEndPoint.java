@@ -15,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
+ * Pour d'entrée de l'API pour la gestion de l'authentification.
  *
  * @author MOSELLE Maxime
  */
@@ -30,7 +31,13 @@ public class SecurityEndPoint {
      * Entrepôt de données.
      */
     @Inject
-    private SessionRepository repository;
+    private CredentialsRepository repository;
+
+    /**
+     * Session applicative.
+     */
+    @Inject
+    private SessionRepository session;
 
     /**
      * Constructeur par défaut. Requis pour le fonctionnement des technologies
@@ -42,6 +49,16 @@ public class SecurityEndPoint {
                 .getString("app.code");
     }
 
+    /**
+     * Demander un jeton pour accéder aux autres URL de cette API.
+     *
+     * @param authorization Code applicatif d'autorisation
+     * @param grantType Type d'accès
+     * @param clientId Identifiant de connexion
+     * @param clientSecret Mot de passe (en clair)
+     * @return Le jeton de session si les paramètres sont valides, sinon un
+     * message d'erreur
+     */
     @POST
     @Path("/authorize")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -67,19 +84,37 @@ public class SecurityEndPoint {
         }
         return response;
     }
-    
-    private Token storeInSession(Token token){
-        repository.storeInSession(token);
+
+    /**
+     * Enregistrer en session le jeton
+     *
+     * @param token Un jeton de session
+     * @return Le jeton initial
+     */
+    private Token storeInSession(final Token token) {
+        session.add(token);
         return token;
     }
 
-    private static Response createSuccess(Token token) {
+    /**
+     * Créer un réponse de succès.
+     *
+     * @param token Un jeton de session
+     * @return Un réponse de succès
+     */
+    private static Response createSuccess(final Token token) {
         return Response
                 .status(Response.Status.CREATED)
                 .entity(token)
                 .build();
     }
 
+    /**
+     * Créer un réponse d'échec.
+     *
+     * @param message Message d'erreur
+     * @return Un réponse d'échec
+     */
     private static Response createFailure(final String message) {
         JsonObject fault = Json
                 .createObjectBuilder()

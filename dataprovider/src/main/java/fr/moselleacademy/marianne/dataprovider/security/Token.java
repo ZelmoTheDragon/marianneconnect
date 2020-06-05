@@ -17,16 +17,28 @@ import javax.json.bind.config.PropertyOrderStrategy;
 @JsonbPropertyOrder(PropertyOrderStrategy.LEXICOGRAPHICAL)
 public class Token {
 
+    /**
+     * Jeton d'accès.
+     */
     @JsonbProperty(value = "accessToken", nillable = false)
     private UUID accessToken;
 
+    /**
+     * Jeton de rafraichissement.
+     */
     @JsonbProperty(value = "refreshToken", nillable = false)
     private UUID refreshToken;
 
+    /**
+     * Date de génération du jeton.
+     */
     @JsonbDateFormat(value = JsonbDateFormat.TIME_IN_MILLIS, locale = "fr")
     @JsonbProperty(value = "issuedAt", nillable = false)
     private LocalDateTime issuedAt;
 
+    /**
+     * Charge utile.
+     */
     @JsonbProperty(value = "credentials", nillable = false)
     private Credentials credentials;
 
@@ -38,6 +50,12 @@ public class Token {
         // RAS
     }
 
+    /**
+     * Générer un nouveau Jeton.
+     *
+     * @param credentials Données métier
+     * @return Un nouveau jeton
+     */
     public static Token generate(final Credentials credentials) {
         Token entity = new Token();
         entity.setAccessToken(UUID.randomUUID());

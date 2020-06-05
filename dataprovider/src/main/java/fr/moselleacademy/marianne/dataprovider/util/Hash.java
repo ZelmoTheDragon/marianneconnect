@@ -45,7 +45,7 @@ public final class Hash {
      * Constructeur interne.
      */
     private Hash() {
-        // Pas d'instanciation
+        throw new UnsupportedOperationException("No instance for you");
     }
 
     /**
@@ -71,10 +71,7 @@ public final class Hash {
                 hexaCode.append(hexa);
             }
         } catch (NoSuchAlgorithmException ex) {
-            // Peut lever une erreur si l'encodage de caractère n'est pas supporté
-            // En principe cela ne devrait jamais se produire grâce à la constante
-            // Java utilisé: 'StandardCharsets.UTF_8'.
-            throw new IllegalStateException(ex);
+            throw new IllegalArgumentException(ex);
         }
         return hexaCode.toString();
     }

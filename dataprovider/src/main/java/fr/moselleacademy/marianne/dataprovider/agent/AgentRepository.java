@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
-import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 
@@ -18,11 +17,6 @@ import javax.enterprise.context.ApplicationScoped;
  */
 @ApplicationScoped
 public class AgentRepository {
-
-    /**
-     * Journalisation.
-     */
-    private static final Logger LOGGER = Logger.getLogger(AgentRepository.class.getName());
 
     /**
      * Chemin du fichier de données.
