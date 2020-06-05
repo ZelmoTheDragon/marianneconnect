@@ -14,6 +14,7 @@
     <modules>
         <module>marianne-franceconnect</module>
         <module>marianne-theme</module>
+        <module>dataprovider</module>
     </modules>
     
     <properties>
@@ -21,6 +22,7 @@
         
         <!-- Version de Java -->
         <version.java>11</version.java>
+        <version.javaee>8.0</version.javaee>
         
         <!-- Version de Keycloak -->
         <version.keycloak>10.0.1</version.keycloak>
@@ -41,6 +43,11 @@
     
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-api</artifactId>
+                <version>${version.javaee}</version>
+            </dependency>
             <dependency>
                 <groupId>org.keycloak</groupId>
                 <artifactId>keycloak-core</artifactId>

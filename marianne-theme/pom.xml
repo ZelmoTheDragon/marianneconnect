@@ -27,7 +27,7 @@
     
     <build>
         <plugins>
-            
+
             <!-- 
                 Extension Wildfly
                 mvn wildly:deploy
