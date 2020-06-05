@@ -1,0 +1,25 @@
+{
+    "name": "Identity Provider",
+    "description": "",
+    "path": "/api",
+
+    "endpoints": [
+        {
+            "path": "/discovery",
+            "method": "GET",
+            "contentType": "application/json",
+            "parameters": []
+        },
+        {
+            "path": "/identifier",
+            "method": "GET",
+            "contentType": "application/json",
+            "parameters": [
+                {
+                    "name": "email",
+                    "type": "queryParam"
+                }
+            ]
+        }
+    ]
+}
