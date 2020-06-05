@@ -18,7 +18,7 @@ import javax.ws.rs.core.Response;
  *
  * @author MOSELLE Maxime
  */
-@Path("/")
+@Path("/agent")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class AgentEndPoint {
@@ -43,7 +43,7 @@ public class AgentEndPoint {
      * @return La liste de tous les agents au format JSON
      */
     @GET
-    @Path("/agents")
+    @Path("/list")
     public List<Agent> showAgents() {
         return repository.find();
     }
@@ -73,7 +73,7 @@ public class AgentEndPoint {
      * @return Un agent au format JSON si possible
      */
     @GET
-    @Path("/agent")
+    @Path("/token")
     public Response findByIdentifier(@QueryParam("identifier") final String identifier) {
         return repository
                 .find()

@@ -56,31 +56,41 @@ public class SecurityEndPoint {
      * @param grantType Type d'accès
      * @param clientId Identifiant de connexion
      * @param clientSecret Mot de passe (en clair)
+     * @param refreshToken Jeton de rafraichissement
      * @return Le jeton de session si les paramètres sont valides, sinon un
      * message d'erreur
      */
     @POST
-    @Path("/authorize")
+    @Path("/token")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
     public Response authorize(
             @HeaderParam("Authorization") final String authorization,
             @FormParam("grant_type") final String grantType,
             @FormParam("username") final String clientId,
-            @FormParam("password") final String clientSecret) {
+            @FormParam("password") final String clientSecret,
+            @FormParam("refresh_token") final String refreshToken) {
 
         final Response response;
         if (!Objects.equals(authorizationCode, authorization)) {
             response = createFailure("Invalid Authorization code");
-        } else if (!Objects.equals(GrantType.PASSWORD, grantType)) {
-            response = createFailure("Invalid grant_type");
-        } else {
+        } else if (Objects.equals(GrantType.PASSWORD, grantType)) {
             response = repository
                     .findByCredentials(clientId, clientSecret)
                     .map(Token::generate)
                     .map(this::storeInSession)
                     .map(SecurityEndPoint::createSuccess)
                     .orElseGet(() -> createFailure("Bad credentials"));
+
+        } else if (Objects.equals(GrantType.REFRESH_TOKEN, grantType)) {
+
+            response = session
+                    .findByRefreshToken(refreshToken)
+                    .map(SecurityEndPoint::createSuccess)
+                    .orElseGet(() -> createFailure("Invalid token"));
+
+        } else {
+            response = createFailure("Invalid grant_type");
         }
         return response;
     }
@@ -104,8 +114,7 @@ public class SecurityEndPoint {
      */
     private static Response createSuccess(final Token token) {
         return Response
-                .status(Response.Status.CREATED)
-                .entity(token)
+                .ok(token)
                 .build();
     }
 

@@ -11,13 +11,57 @@
             "parameters": []
         },
         {
-            "path": "/identifier",
+            "path": "/agent/list",
+            "method": "GET",
+            "contentType": "application/json",
+            "parameters": []
+        },
+        {
+            "path": "/agent/identifier",
             "method": "GET",
             "contentType": "application/json",
             "parameters": [
                 {
                     "name": "email",
                     "type": "queryParam"
+                }
+            ]
+        },
+        {
+            "path": "/agent/token",
+            "method": "GET",
+            "contentType": "application/json",
+            "parameters": [
+                {
+                    "name": "identifier",
+                    "type": "queryParam"
+                }
+            ]
+        },
+        {
+            "path": "/security/token",
+            "method": "POST",
+            "contentType": "application/x-www-form-urlencoded",
+            "parameters": [
+                {
+                    "name": "Authorization",
+                    "type": "headerParam"
+                },
+                {
+                    "name": "grant_type",
+                    "type": "formParam"
+                },
+                {
+                    "name": "username",
+                    "type": "formParam"
+                },
+                {
+                    "name": "password",
+                    "type": "formParam"
+                },
+                {
+                    "name": "refresh_token",
+                    "type": "formParam"
                 }
             ]
         }
