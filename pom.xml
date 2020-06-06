@@ -13,7 +13,6 @@
     
     <modules>
         <module>marianne-keycloak</module>
-        <module>marianne-theme</module>
         <module>dataprovider</module>
     </modules>
     
