@@ -79,7 +79,7 @@ public final class ExternalClaimConfig {
         ProviderConfigProperty p5 = new ProviderConfigProperty(
                 CLAIMS_SOURCE_NAME,
                 Messages.get("dataprovider.claims_source_name.label"),
-                Messages.get("dataprovider.claims__source_name.help"),
+                Messages.get("dataprovider.claims_source_name.help"),
                 ProviderConfigProperty.STRING_TYPE,
                 null
         );
@@ -87,7 +87,7 @@ public final class ExternalClaimConfig {
         ProviderConfigProperty p6 = new ProviderConfigProperty(
                 CLAIMS_TARGET_NAME,
                 Messages.get("dataprovider.claims_target_name.label"),
-                Messages.get("dataprovider.claims__target_name.help"),
+                Messages.get("dataprovider.claims_target_name.help"),
                 ProviderConfigProperty.STRING_TYPE,
                 null
         );
