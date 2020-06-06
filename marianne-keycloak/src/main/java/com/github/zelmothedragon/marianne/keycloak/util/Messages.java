@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
  */
 public final class Messages {
 
-    private static final ResourceBundle MESSAGE = ResourceBundle.getBundle("message");
+    private static final ResourceBundle MESSAGE = ResourceBundle.getBundle("messages");
 
     private Messages() {
         throw new UnsupportedOperationException("No instance for you");

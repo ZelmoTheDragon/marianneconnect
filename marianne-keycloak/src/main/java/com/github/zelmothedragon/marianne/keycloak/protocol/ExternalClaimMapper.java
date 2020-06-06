@@ -14,22 +14,22 @@ import org.keycloak.representations.IDToken;
 
 /**
  * Ajouter des données complémentaires au jeton en appelant un fournisseur de
- * données externe.
+ * données externe (bouchon).
  *
  * @author MOSELLE Maxime
  */
 public class ExternalClaimMapper extends AbstractOIDCProtocolMapper
         implements OIDCAccessTokenMapper, OIDCIDTokenMapper, UserInfoTokenMapper {
 
-    public static final String ID = "dataprovider";
+    public static final String ID = "external-dataprovider";
 
     private final ExternalClaimConfig config;
 
-    private final DataProvider provider;
+    private final ExternalDataProvider provider;
 
     public ExternalClaimMapper() {
         this.config = new ExternalClaimConfig();
-        this.provider = new DataProvider(config);
+        this.provider = new ExternalDataProvider(config);
     }
 
     @Override

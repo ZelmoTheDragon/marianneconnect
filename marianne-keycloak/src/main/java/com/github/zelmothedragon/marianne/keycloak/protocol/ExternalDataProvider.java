@@ -26,16 +26,16 @@ import org.jboss.logging.Logger;
  *
  * @author MOSELLE Maxime
  */
-public final class DataProvider {
+public final class ExternalDataProvider {
 
     /**
      * Journalisation.
      */
-    private static final Logger LOGGER = Logger.getLogger(DataProvider.class);
+    private static final Logger LOGGER = Logger.getLogger(ExternalDataProvider.class);
 
     private final ExternalClaimConfig config;
 
-    public DataProvider(final ExternalClaimConfig config) {
+    public ExternalDataProvider(final ExternalClaimConfig config) {
         this.config = config;
     }
 
