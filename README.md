@@ -20,6 +20,12 @@ Le projet est découpé en modules:
     * Module *WAR*
     * Ce module se comporte comme un fournisseur de données externe (bouchon) pour agréger des données dans le *JWT*.
 
+## Environnement
+
+Ce projet est réalisé en **Java 11** *(OpenJDK)*. et **JavaEE 8**.
+Le module a été testé avec **Keycloak 10**.
+Il utilise l'outil **Maven** en version 3.6.2.
+
 ## Exécution
 
 Récupération du projet:
