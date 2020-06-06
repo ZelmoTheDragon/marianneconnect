@@ -23,15 +23,26 @@ import org.keycloak.services.managers.AuthenticationManager;
 import org.keycloak.services.messages.Messages;
 
 /**
+ * Fournisseur d'identité FranceConnect.
  *
  * @author MOSELLE Maxime
  */
 public final class FranceConnectIdentityProvider extends OIDCIdentityProvider
         implements SocialIdentityProvider<OIDCIdentityProviderConfig> {
 
+    /**
+     * Données complémentaire par défaut.
+     */
     public static final String DEFAULT_SCOPE = "openid identite_pivot email";
 
-    public FranceConnectIdentityProvider(
+    /**
+     * Constructeur à visibilité restreinte. Construit le fournisseur d'identité
+     * FranceConnect.
+     *
+     * @param session Session de Keycloak
+     * @param config Configuration du fournisseur d'identité.
+     */
+    FranceConnectIdentityProvider(
             final KeycloakSession session,
             final FranceConnectIdentityProviderConfig config) {
 
@@ -49,11 +60,14 @@ public final class FranceConnectIdentityProvider extends OIDCIdentityProvider
 
     @Override
     public FranceConnectIdentityProviderConfig getConfig() {
+        // Forcer le transtypage
         return (FranceConnectIdentityProviderConfig) super.getConfig();
     }
 
     @Override
     protected UriBuilder createAuthorizationUrl(final AuthenticationRequest request) {
+        // Prise en charge de l'EIDAS dans la requête.
+
         var authorizationUrlBuilder = super.createAuthorizationUrl(request);
         var authorizationUrlQuery = authorizationUrlBuilder.build().getQuery();
 
@@ -61,12 +75,15 @@ public final class FranceConnectIdentityProvider extends OIDCIdentityProvider
         var eidasOverride = getConfig().isEidasOverride();
 
         if (eidasOverride) {
+            // Keycloak définit lui même le niveau
             if (authorizationUrlQuery.contains(EIDAS.QUERY_PARAM_ACR)) {
                 authorizationUrlBuilder.replaceQueryParam(EIDAS.QUERY_PARAM_ACR, eidasLevel);
             } else {
                 authorizationUrlBuilder.queryParam(EIDAS.QUERY_PARAM_ACR, eidasLevel);
             }
         } else {
+            // Les fournisseurs de services définissent le niveau
+            // Si ce n'est pas la cas, Keycloak définit lui même le niveau
             if (!authorizationUrlQuery.contains(EIDAS.QUERY_PARAM_ACR)) {
                 authorizationUrlBuilder.queryParam(EIDAS.QUERY_PARAM_ACR, eidasLevel);
             }
@@ -91,6 +108,9 @@ public final class FranceConnectIdentityProvider extends OIDCIdentityProvider
         return DEFAULT_SCOPE;
     }
 
+    // ------------------------------
+    // Classe interne
+    // ------------------------------
     protected class FranceConnectEndPoint extends OIDCEndpoint {
 
         public FranceConnectEndPoint(
@@ -105,6 +125,8 @@ public final class FranceConnectIdentityProvider extends OIDCIdentityProvider
         @Path("logout_response")
         @Override
         public Response logoutResponse(@QueryParam("state") final String state) {
+            // Meilleur gestion de la déconnexion
+            
             final Response result;
             if (Objects.isNull(state)) {
                 logger.warn("No query parameter 'state', so using cookie");

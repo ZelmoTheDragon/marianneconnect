@@ -4,36 +4,64 @@ import org.keycloak.broker.oidc.OIDCIdentityProviderConfig;
 import org.keycloak.models.IdentityProviderModel;
 
 /**
+ * Configuration du fournisseur d'identité Keycloak.
  *
  * @author MOSELLE Maxime
  */
 public final class FranceConnectIdentityProviderConfig extends OIDCIdentityProviderConfig {
 
+    /**
+     * Numéro de série.
+     */
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Configuration pour le niveau EIDAS.
+     */
     public static final String CONFIG_EIDAS_LEVEL = "eidasLevel";
 
+    /**
+     * Configuration indiquant si oui ou non Keycloak définit lui-même le niveau
+     * EIDAS.
+     */
     public static final String CONFIG_EIDAS_OVERRIDE = "eidasOverride";
 
+    /**
+     * Environnement cible de FranceConnect.
+     */
     public static final String CONFIG_ENVIRONMENT = "environment";
 
-    public FranceConnectIdentityProviderConfig() {
+    /**
+     * Constructeur à visibilité restreinte. Construit la configuration du
+     * fournisseur d'identité FranceConnect.
+     */
+    FranceConnectIdentityProviderConfig() {
         this(null);
     }
 
-    public FranceConnectIdentityProviderConfig(final IdentityProviderModel model) {
+    /**
+     * Constructeur à visibilité restreinte. Construit la configuration du
+     * fournisseur d'identité FranceConnect.
+     *
+     * @param model Configuration héritée pour ce fournisseur d'identité
+     */
+    FranceConnectIdentityProviderConfig(final IdentityProviderModel model) {
         super(model);
 
+        // Valeur par défaut du niveau EIDAS
         if (!getConfig().containsKey(CONFIG_EIDAS_LEVEL)) {
             setEidasLevel(EIDAS.LEVEL_3);
         }
+        // Valeur par défaut de la surcharge du niveau EIDAS
         if (!getConfig().containsKey(CONFIG_EIDAS_OVERRIDE)) {
             setEidasOverride(true);
         }
+        // Valeur par défaut de l'environnement
         if (!getConfig().containsKey(CONFIG_ENVIRONMENT)) {
             setEnvironment(Environment.INTEGRATION);
         }
-        
+
+        // Définir les URL en fonction de l'environnement
         var env = getEnvironment();
         setAuthorizationUrl(env.getAutorizationURL());
         setTokenUrl(env.getTokenURL());
@@ -41,6 +69,9 @@ public final class FranceConnectIdentityProviderConfig extends OIDCIdentityProvi
         setLogoutUrl(env.getUserInfoURL());
     }
 
+    // ------------------------------
+    // Accesseurs & Muttateurs
+    // ------------------------------
     public EIDAS getEidasLevel() {
         return EIDAS.valueOf(getConfig().get(CONFIG_EIDAS_LEVEL));
     }
