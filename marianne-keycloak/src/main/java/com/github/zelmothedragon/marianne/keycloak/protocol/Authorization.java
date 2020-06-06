@@ -113,6 +113,11 @@ public final class Authorization {
         return eq;
     }
 
+    /**
+     * Formatter l'entête d'autorisation.
+     *
+     * @return L'entête formattée pour les requêtes <i>HTTP</i>
+     */
     public String asText() {
         return String.join(
                 HEADER_SEPARATOR,

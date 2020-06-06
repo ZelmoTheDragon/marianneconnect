@@ -2,6 +2,8 @@ package com.github.zelmothedragon.marianne.keycloak.protocol;
 
 import com.github.zelmothedragon.marianne.keycloak.util.Messages;
 import java.util.List;
+import org.keycloak.models.ClientSessionContext;
+import org.keycloak.models.KeycloakSession;
 import org.keycloak.models.ProtocolMapperModel;
 import org.keycloak.models.UserSessionModel;
 import org.keycloak.protocol.oidc.mappers.AbstractOIDCProtocolMapper;
@@ -14,24 +16,43 @@ import org.keycloak.representations.IDToken;
 
 /**
  * Ajouter des données complémentaires au jeton en appelant un fournisseur de
- * données externe (bouchon).
+ * données externe (bouchon). Keycloak s'appuie sur la technique de
+ * <i>ServiceLoader</i>, l'implémentation doit être déclarée dans le fichier
+ * nommé
+ * <i>org.keycloak.protocol.ProtocolMapper</i> du répertoire
+ * <i>META-INF/services</i>.
  *
  * @author MOSELLE Maxime
  */
 public class ExternalClaimMapper extends AbstractOIDCProtocolMapper
         implements OIDCAccessTokenMapper, OIDCIDTokenMapper, UserInfoTokenMapper {
 
+    /**
+     * Identifiant technique.
+     */
     public static final String ID = "external-dataprovider";
 
+    /**
+     * Configuration.
+     */
     private final ExternalClaimConfig config;
 
+    /**
+     * Fournisseur de données externe.
+     */
     private final ExternalDataProvider provider;
 
+    /**
+     * Constructeur par défaut. Requis pour le fonctionnement de Keycloak.
+     */
     public ExternalClaimMapper() {
         this.config = new ExternalClaimConfig();
         this.provider = new ExternalDataProvider(config);
     }
 
+    // ------------------------------
+    // Accesseurs & Muttateurs
+    // ------------------------------
     @Override
     public String getDisplayCategory() {
         return AbstractOIDCProtocolMapper.TOKEN_MAPPER_CATEGORY;
@@ -54,6 +75,7 @@ public class ExternalClaimMapper extends AbstractOIDCProtocolMapper
 
     @Override
     public List<ProviderConfigProperty> getConfigProperties() {
+        // Permet de construire l'interface web d'administration 
         return config.createConfiguration();
     }
 
@@ -61,9 +83,14 @@ public class ExternalClaimMapper extends AbstractOIDCProtocolMapper
     protected void setClaim(
             final IDToken token,
             final ProtocolMapperModel mappingModel,
-            final UserSessionModel userSession) {
+            final UserSessionModel userSession,
+            final KeycloakSession keycloakSession,
+            final ClientSessionContext clientSessionCtx) {
 
-        config.loadConfiguration(mappingModel.getConfig());
+        // Ajouter les données complémentaire
+        // dans le jeton de l'identité numérique
+        
+        config.setConfiguration(mappingModel.getConfig());
         String externalClaims = provider.getExternalClaims();
         OIDCAttributeMapperHelper.mapClaim(token, mappingModel, externalClaims);
     }

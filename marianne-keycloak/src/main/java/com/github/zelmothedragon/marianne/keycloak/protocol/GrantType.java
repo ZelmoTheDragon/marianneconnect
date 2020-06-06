@@ -8,6 +8,11 @@ package com.github.zelmothedragon.marianne.keycloak.protocol;
 public final class GrantType {
 
     /**
+     * Nom de l'entête HTTP du type d'accès.
+     */
+    public static final String HEADER_NAME = "grant_type";
+
+    /**
      * Type: Mot de passe.
      */
     public static final String PASSWORD = "password";
@@ -18,7 +23,7 @@ public final class GrantType {
     public static final String REFRESH_TOKEN = "refresh_token";
 
     /**
-     * Constructeur interne.
+     * Constructeur interne. Pas d'instanciation.
      */
     private GrantType() {
         throw new UnsupportedOperationException("No instance for you");

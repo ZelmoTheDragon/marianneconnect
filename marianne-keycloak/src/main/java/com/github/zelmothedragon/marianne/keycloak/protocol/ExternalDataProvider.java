@@ -23,23 +23,34 @@ import org.apache.http.util.EntityUtils;
 import org.jboss.logging.Logger;
 
 /**
+ * Fournisseur de données externe. Intéroge le fournisseur de données externe
+ * sous forme d'appel <i>REST</i>.
  *
  * @author MOSELLE Maxime
  */
-public final class ExternalDataProvider {
+final class ExternalDataProvider {
 
     /**
      * Journalisation.
      */
     private static final Logger LOGGER = Logger.getLogger(ExternalDataProvider.class);
 
+    /**
+     * Configuration.
+     */
     private final ExternalClaimConfig config;
-
-    public ExternalDataProvider(final ExternalClaimConfig config) {
+    
+    /**
+     * Constructeur à visibilité restreinte. Construit le contrôleur du
+     * fournisseur de données externe pour récupérer les informations.
+     *
+     * @param config Configuration
+     */
+    ExternalDataProvider(final ExternalClaimConfig config) {
         this.config = config;
     }
 
-    public String getExternalClaims() {
+    String getExternalClaims() {
         return null;
     }
 

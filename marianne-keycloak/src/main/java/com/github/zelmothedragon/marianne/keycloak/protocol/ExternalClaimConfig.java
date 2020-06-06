@@ -8,32 +8,67 @@ import org.keycloak.provider.ProviderConfigProperty;
 import org.keycloak.provider.ProviderConfigurationBuilder;
 
 /**
+ * Configuration du fournisseur de données externe.
  *
  * @author MOSELLE Maxime
  */
-public final class ExternalClaimConfig {
+final class ExternalClaimConfig {
 
-    public static final String CLIENT_ID = "dataprovider.clientId";
+    /**
+     * Configuration pour l'dentifiant de connexion.
+     */
+    static final String CLIENT_ID = "dataprovider.clientId";
 
-    public static final String CLIENT_SECRET = "dataprovider.clientSecret";
+    /**
+     * Configuration pour le mot de passe (en clair).
+     */
+    static final String CLIENT_SECRET = "dataprovider.clientSecret";
 
-    public static final String KEY = "dataprovider.key";
+    /**
+     * Configuration pour le clef secrète.
+     */
+    static final String KEY = "dataprovider.key";
 
-    public static final String TOKEN_URL = "dataprovider.tokenUrl";
+    /**
+     * Configuration pour l'URL d'autorisation.
+     */
+    static final String TOKEN_URL = "dataprovider.tokenUrl";
 
-    public static final String CLAIMS_URL = "dataprovider.claimsUrl";
+    /**
+     * Configuration pour l'URL de récupération des données.
+     */
+    static final String CLAIMS_URL = "dataprovider.claimsUrl";
 
-    public static final String CLAIMS_SOURCE_NAME = "dataprovider.claimsSourceName";
+    /**
+     * Nom de l'attribut du jeton de données source à récupérer.
+     */
+    static final String CLAIMS_SOURCE_NAME = "dataprovider.claimsSourceName";
 
-    public static final String CLAIMS_TARGET_NAME = "dataprovider.claimsTargetName";
+    /**
+     * Nouveau nom de l'attribut du jeton d'identité à fournir.
+     */
+    static final String CLAIMS_TARGET_NAME = "dataprovider.claimsTargetName";
 
+    /**
+     * Configuration de Keycloak pour le fournisseur de données externe.
+     */
     private final Map<String, String> configuration;
 
-    public ExternalClaimConfig() {
+    /**
+     * Constructeur à visibilité restreinte. Construit la configuration du
+     * fournisseur de données externe.
+     */
+    ExternalClaimConfig() {
         this.configuration = new HashMap<>();
     }
 
-    public List<ProviderConfigProperty> createConfiguration() {
+    /**
+     * Construire la liste des champs de configuration du fournisseur de données
+     * externe.
+     *
+     * @return La liste des champs de configuration
+     */
+    List<ProviderConfigProperty> createConfiguration() {
         ProviderConfigProperty p0 = new ProviderConfigProperty(
                 CLIENT_ID,
                 Messages.get("dataprovider.client_id.label"),
@@ -104,36 +139,39 @@ public final class ExternalClaimConfig {
                 .build();
     }
 
-    public void loadConfiguration(final Map<String, String> config) {
+    // ------------------------------
+    // Accesseurs & Muttateurs
+    // ------------------------------
+    void setConfiguration(final Map<String, String> config) {
         configuration.clear();
         configuration.putAll(config);
     }
 
-    public String getClientId() {
+    String getClientId() {
         return configuration.get(CLIENT_ID);
     }
 
-    public String getClientSecret() {
+    String getClientSecret() {
         return configuration.get(CLIENT_SECRET);
     }
 
-    public String getKey() {
+    String getKey() {
         return configuration.get(KEY);
     }
 
-    public String getTokenUrl() {
+    String getTokenUrl() {
         return configuration.get(TOKEN_URL);
     }
 
-    public String getClaimsUrl() {
+    String getClaimsUrl() {
         return configuration.get(CLAIMS_URL);
     }
 
-    public String getClaimsSourceName() {
+    String getClaimsSourceName() {
         return configuration.get(CLAIMS_SOURCE_NAME);
     }
 
-    public String getClaimsTargetName() {
+    String getClaimsTargetName() {
         return configuration.get(CLAIMS_TARGET_NAME);
     }
 
