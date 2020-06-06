@@ -6,13 +6,13 @@
     <modelVersion>4.0.0</modelVersion>
     
     <parent>
-        <groupId>fr.moselleacademy</groupId>
-        <artifactId>keycloak-marianne</artifactId>
+        <groupId>com.github.zelmothedragon</groupId>
+        <artifactId>marianne</artifactId>
         <version>0.0.1</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     
-    <groupId>fr.moselleacademy.marianne</groupId>
+    <groupId>com.github.zelmothedragon.marianne</groupId>
     <artifactId>dataprovider</artifactId>
     <version>0.0.1</version>
     <packaging>war</packaging>
