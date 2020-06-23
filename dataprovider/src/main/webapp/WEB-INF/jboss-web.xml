@@ -3,7 +3,7 @@
     POUR DÉVELOPPEMENT OU INTÉGRATION UNIQUEMENT
     
     Fichier de déploiement spécifique au serveur d'application Wildfly >= 8.XXX.
-    Déclare les ressources et configurations web du serveur.
+    Déclaration des ressources et configurations web du serveur.
 -->
 <jboss-web 
     xmlns="http://www.jboss.com/xml/ns/javaee" 

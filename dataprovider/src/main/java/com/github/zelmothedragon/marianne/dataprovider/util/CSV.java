@@ -38,6 +38,8 @@ public final class CSV {
     public static List<String> readFile(final String path) {
         // Utilisation de BufferReader à la place de java.nio.Paths et java.nio.Files
         // Car non surporté lorsque cette application est déployée dans Keycloak.
+        // Il est déployé dans Keycloak pour simplifié l'environnement de test/intégration
+        // sans avoir à installer ou configurer un autres serveur d'applications.
         List<String> lines;
         try (
                 InputStream stream = CSV.class.getClassLoader().getResourceAsStream(path);

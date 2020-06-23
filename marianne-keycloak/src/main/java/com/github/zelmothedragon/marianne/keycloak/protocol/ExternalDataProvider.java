@@ -68,7 +68,7 @@ final class ExternalDataProvider {
         );
 
         HttpPost req = new HttpPost(config.getTokenUrl());
-        req.setHeader("Authorization", authorization.asText());
+        req.setHeader("Authorization", authorization.toString());
         req.setHeader("Content-Type", MediaType.APPLICATION_FORM_URLENCODED);
         req.setEntity(entity);
 
@@ -87,7 +87,7 @@ final class ExternalDataProvider {
         );
 
         HttpPost req = new HttpPost(config.getTokenUrl());
-        req.setHeader("Authorization", authorization.asText());
+        req.setHeader("Authorization", authorization.toString());
         req.setHeader("Content-Type", MediaType.APPLICATION_FORM_URLENCODED);
         req.setEntity(entity);
 
@@ -102,7 +102,7 @@ final class ExternalDataProvider {
                     .build();
 
             HttpGet req = new HttpGet(uri);
-            req.setHeader("Authorization", authorization.asText());
+            req.setHeader("Authorization", authorization.toString());
             req.setHeader("Content-Type", MediaType.APPLICATION_JSON);
 
             JsonObject json = sendRequest(req);
