@@ -9,13 +9,13 @@
     <parent>
         <groupId>com.github.zelmothedragon</groupId>
         <artifactId>marianne</artifactId>
-        <version>0.1.0-SNAPSHOT</version>
+        <version>0.2.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     
     <groupId>com.github.zelmothedragon.marianne</groupId>
     <artifactId>marianne-keycloak</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.2.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     
     <properties>

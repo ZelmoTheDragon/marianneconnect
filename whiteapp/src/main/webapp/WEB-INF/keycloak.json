@@ -1,0 +1,9 @@
+{
+    "realm": "marianne",
+    "resource": "whiteapp",
+    "auth-server-url": "http://localhost:8080/auth",
+    "ssl-required": "external",
+    "credentials": {
+        "secret": "${WHITEAPP_SECRET}"
+    }
+}
