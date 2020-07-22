@@ -8,14 +8,14 @@
     
     <parent>
         <groupId>com.github.zelmothedragon</groupId>
-        <artifactId>marianne</artifactId>
-        <version>0.2.0-SNAPSHOT</version>
+        <artifactId>marianneconnect</artifactId>
+        <version>0.3.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     
-    <groupId>com.github.zelmothedragon.marianne</groupId>
+    <groupId>com.github.zelmothedragon.marianneconnect</groupId>
     <artifactId>dataprovider</artifactId>
-    <version>0.2.0-SNAPSHOT</version>
+    <version>0.3.0-SNAPSHOT</version>
     <packaging>war</packaging>
     
     <properties>
