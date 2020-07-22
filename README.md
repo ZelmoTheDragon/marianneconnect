@@ -1,4 +1,4 @@
-# Keycloak Marianne
+# MarianneConnect
 
 Ce projet est sous licence **CeCILL** (**CE**A **C**NRS **I**NRIA **L**ogiciel **L**ibre),
 une licence de logiciel libre compatible avec la **GNU GPL**.
@@ -13,12 +13,15 @@ Le code est directement inspiré de l'INSEE [Keycloak-FranceConnect](https://git
 ## Module
 
 Le projet est découpé en modules:
-* **marianne-keycloak**
+* **marianneconnect-keycloak**
     * Module *JAR*
     * Ce module contient l'implémentation de FranceConnect pour Keycloak.
 * **dataprovider**
     * Module *WAR*
     * Ce module se comporte comme un fournisseur de données externe (bouchon) pour agréger des données dans le *JWT*.
+* **whiteapp**
+    * Module *WAR*
+    * Ce module se comporte comme un fournisseur de services.
 
 ## Environnement
 
@@ -30,7 +33,7 @@ Il utilise l'outil **Maven** en version 3.6.2.
 
 Récupération du projet:
 ~~~
-    git clone https://github.com/ZelmoTheDragon/marianne.git
+    git clone https://github.com/ZelmoTheDragon/marianneconnect.git
     cd marianne
     mvn install
 ~~~
@@ -38,7 +41,7 @@ Récupération du projet:
 Déploiement du module sur Keycloak:
 
 ~~~
-    cd marianne-keycloak
+    cd marianneconnect-keycloak
     mvn wildly:deploy
 ~~~
 
