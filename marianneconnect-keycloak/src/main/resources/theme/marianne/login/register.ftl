@@ -41,6 +41,46 @@
                 </div>
             </div>
           </#if>
+          
+            <#-- Gender -->
+            <div class="form-group">
+                <div class="${properties.kcLabelWrapperClass!}">
+                    <label for="user.attributes.gender" class="${properties.kcLabelClass!}">${msg("gender")}</label>
+                </div>
+                <div class="${properties.kcInputWrapperClass!}">
+                    <input type="text" class="${properties.kcInputClass!}" id="user.attributes.gender" name="user.attributes.gender" value="${(register.formData['user.attributes.gender']!'')}"/>
+                </div>
+            </div>
+          
+            <#-- Birth Date -->
+            <div class="form-group">
+                <div class="${properties.kcLabelWrapperClass!}">
+                    <label for="user.attributes.birthdate" class="${properties.kcLabelClass!}">${msg("birthdate")}</label>
+                </div>
+                <div class="${properties.kcInputWrapperClass!}">
+                    <input type="date" class="${properties.kcInputClass!}" id="user.attributes.birthdate" name="user.attributes.birthdate" value="${(register.formData['user.attributes.birthdate']!'')}"/>
+                </div>
+            </div>
+
+            <#-- Birth Country -->
+            <div class="form-group">
+                <div class="${properties.kcLabelWrapperClass!}">
+                    <label for="user.attributes.birthcountry" class="${properties.kcLabelClass!}">${msg("birthcountry")}</label>
+                </div>
+                <div class="${properties.kcInputWrapperClass!}">
+                    <input type="text" class="${properties.kcInputClass!}" id="user.attributes.birthcountry" name="user.attributes.birthcountry" value="${(register.formData['user.attributes.birthcountry']!'')}"/>
+                </div>
+            </div>
+            
+            <#-- Birth Place -->
+            <div class="form-group">
+                <div class="${properties.kcLabelWrapperClass!}">
+                    <label for="user.attributes.birthplace" class="${properties.kcLabelClass!}">${msg("birthplace")}</label>
+                </div>
+                <div class="${properties.kcInputWrapperClass!}">
+                    <input type="text" class="${properties.kcInputClass!}" id="user.attributes.birthplace" name="user.attributes.birthplace" value="${(register.formData['user.attributes.birthplace']!'')}"/>
+                </div>
+            </div>
 
             <#if passwordRequired??>
             <div class="${properties.kcFormGroupClass!} ${messagesPerField.printIfExists('password',properties.kcFormGroupErrorClass!)}">
