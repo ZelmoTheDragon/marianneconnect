@@ -2,29 +2,28 @@ package com.github.zelmothedragon.marianneconnect.keycloak.model;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
+ * Lieu de naissance (France uniquement). <b>Attention cette fonctionnalité peut
+ * être supprimée par Keycloak dans les prochaines versions.</b>
  *
  * @author MOSELLE Maxime
  */
-@Deprecated
 @Entity
-@Table(name = "birth_place")
+@Table(name = "marianneconnect_birth_place")
 public class BirthPlace implements Serializable {
 
     /**
      * Clef primaire.
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false, unique = true)
-    private Long id;
+    @Column(name = "id", unique = true, columnDefinition = UUIDConverter.COLUMN_DEFINITION)
+    private UUID id;
 
     /**
      * Code INSEE de la ville.
@@ -76,11 +75,11 @@ public class BirthPlace implements Serializable {
     // ------------------------------
     // Accesseurs & Muttateurs
     // ------------------------------
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

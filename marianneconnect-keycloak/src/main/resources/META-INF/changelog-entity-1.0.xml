@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog 
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"  
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd"
+    logicalFilePath="changelog-entity-1.0.xml">
+    
+    <!--
+        Attention cette fonctionnalité 
+        peut être supprimée par Keycloak dans les prochaines versions.
+    -->
+    
+    <changeSet id="MARIANNECONNECT_BIRTH_COUNTRY" author="marianneconnect">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="marianneconnect_birth_country" />
+            </not>
+        </preConditions>
+        <createTable tableName="marianneconnect_birth_country">
+            <column name="id" type="varchar(36)">
+                <constraints primaryKey="true" unique="true" />
+            </column>
+            <column name="insee_code" type="char(5)">
+                <constraints nullable="false" />
+            </column>
+            <column name="country_name" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="MARIANNECONNECT_BIRTH_PLACE" author="marianneconnect">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="marianneconnect_birth_place" />
+            </not>
+        </preConditions>
+        <createTable tableName="marianneconnect_birth_place">
+            <column name="id" type="varchar(36)">
+                <constraints primaryKey="true" unique="true" />
+            </column>
+            <column name="insee_code" type="char(5)">
+                <constraints nullable="false" />
+            </column>
+            <column name="postal_code" type="char(5)">
+                <constraints nullable="false" />
+            </column>
+            <column name="town" type="varchar(255)">
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="MARIANNECONNECT_GENDER" author="marianneconnect">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="marianneconnect_gender" />
+            </not>
+        </preConditions>
+        <createTable tableName="marianneconnect_gender">
+            <column name="id" type="varchar(36)">
+                <constraints primaryKey="true" unique="true" />
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" />
+                <constraints unique="true" />
+            </column>
+            <column name="description" type="varchar(255)">
+            </column>
+        </createTable>
+    </changeSet>
+    
+</databaseChangeLog>
