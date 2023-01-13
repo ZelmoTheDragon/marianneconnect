@@ -25,7 +25,7 @@
         <version.javaee>8.0</version.javaee>
         
         <!-- Version de Keycloak -->
-        <version.keycloak>10.0.2</version.keycloak> 
+        <version.keycloak>20.0.3</version.keycloak> 
     </properties>
     
     <dependencyManagement>
